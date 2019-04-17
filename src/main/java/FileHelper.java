@@ -1,4 +1,3 @@
-import org.apache.logging.log4j.core.util.FileUtils;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -16,7 +15,8 @@ import java.util.Map;
 public class FileHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileHelper.class);
     public static Map<String, List<String>> map = new HashMap<String, List<String>>();
-    public static Map<String, List<String>> notTranslateMap = new HashMap<String, List<String>>();
+    public static Map<String, List<String>> plugNotTranslateMap = new HashMap<String, List<String>>();
+    public static Map<String, List<String>> stringNotTranslateMap = new HashMap<String, List<String>>();
 
     public static List<File> plugStringList = new ArrayList<File>();
     public static List<File> stringList = new ArrayList<File>();
@@ -45,12 +45,19 @@ public class FileHelper {
         System.out.println("plug size:" + plugStringList.size());
         System.out.println("stringList:" + stringList);
         System.out.println("string size:" + stringList.size());
-        for (File xmlFile : plugStringList) {
+//        for (File xmlFile : plugStringList) {
+//            parseXml(xmlFile.toString());
+//        }
+//        for (Map.Entry<String, List<String>> mapEntry : plugNotTranslateMap.entrySet()) {
+//            System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
+//        }
+        for (File xmlFile : stringList) {
             parseXml(xmlFile.toString());
         }
-        for (Map.Entry<String, List<String>> mapEntry : notTranslateMap.entrySet()) {
+        for (Map.Entry<String, List<String>> mapEntry : stringNotTranslateMap.entrySet()) {
             System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
         }
+
     }
 
     public static void getAllDirsAndFiles(List<File> files, File file) {
@@ -84,11 +91,18 @@ public class FileHelper {
                     if (map.get(attr.getValue()).contains(child.getText())) {
 //                        System.out.println("ooooops,not translate!");
 //                        System.out.println("没有翻译的重复的字段: " + filePath + " +field: " + attr.getValue() + " +value: " + child.getText());
-//                        if(attr.getValue().startsWith("plug_timer") || attr.getValue().startsWith("intelligent_plug")){
-//                        }else {
-                            System.out.println("没有翻译,重复的字段: " + filePath + " +field: " + attr.getValue() + " +value: " + child.getText());
-                           notTranslateMap.get(attr.getValue()).add(filePath);
-                            notTranslateMap.put(attr.getValue(), notTranslateMap.get(attr.getValue()));
+                        if (filePath.contains("plug")) {
+                            if (attr.getValue().startsWith("plug_timer") || attr.getValue().startsWith("intelligent_plug") || attr.getValue().startsWith("plug_confirm")) {
+                            } else {
+                                System.out.println("重复的字段: " + filePath + " +field: " + attr.getValue() + " +value: " + child.getText());
+                                List<String> repeatValueList = new ArrayList<String>();
+                                repeatValueList.add(map.get(attr.getValue()).get(0));
+                                repeatValueList.add(filePath);
+                                plugNotTranslateMap.put(attr.getValue(), repeatValueList);
+                            }
+                        } else {
+                            System.out.println("没有翻译的重复的字段: " + filePath + " +field: " + attr.getValue() + " +value: " + child.getText());
+                        }
                     } else {
 //                        System.out.println("key same,value not same, go on");
                         List<String> valueList = map.get(attr.getValue());
