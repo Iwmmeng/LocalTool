@@ -59,7 +59,6 @@ public class FileHelper {
         }
         System.out.println("keys size: "+map.keySet().size());
         System.out.println("map size"+ map.size());
-        System.out.println(plugStringList.get(0).getParent());
 
         String filepath = "/Users/huamiumiu/Miot/Localization/11.xls";
         ExcelHelper.createExcel(filepath,plugStringList,map);
