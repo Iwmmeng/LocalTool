@@ -16,6 +16,8 @@ import java.util.Map;
 public class FileHelper {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileHelper.class);
     public static Map<String, List<String>> map = new HashMap<String, List<String>>();
+    public static Map<String, List<String>> mapString = new HashMap<String, List<String>>();
+    public static Map<String, List<String>> mapPlug = new HashMap<String, List<String>>();
 
     public static Map<String, List<String>> plugNotTranslateMap = new HashMap<String, List<String>>();
     public static Map<String, List<String>> stringNotTranslateMap = new HashMap<String, List<String>>();
@@ -50,9 +52,9 @@ public class FileHelper {
         for (File xmlFile : plugStringList) {
             parseAllXml(xmlFile.toString());
         }
-//        for (File xmlFile : stringList) {
-//            parseAllXml(xmlFile.toString());
-//        }
+        for (File xmlFile : stringList) {
+            parseAllXml(xmlFile.toString());
+        }
 
         for (Map.Entry<String, List<String>> mapEntry : map.entrySet()) {
             System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
@@ -62,6 +64,7 @@ public class FileHelper {
 
         String filepath = "/Users/huamiumiu/Miot/Localization/11.xls";
         ExcelHelper.createExcel(filepath,plugStringList,map);
+        ExcelHelper.createExcel(filepath,stringList,map);
 
 
 
@@ -139,7 +142,7 @@ public class FileHelper {
         }
     }
 //把所有的值都记录存到map
-    public static void parseAllXml(String filePath) throws DocumentException {
+    public static Map<String, List<String>> parseAllXml(String filePath) throws DocumentException {
         SAXReader reader = new SAXReader();
 //        Document doc = reader.read(new File("/Users/huamiumiu/Miot/Localization/localFile/de/plug_strings.xml"));
         Document doc = reader.read(new File(filePath));
@@ -161,6 +164,13 @@ public class FileHelper {
                 }
             }
         }
+        if(filePath.contains("plug")){
+            mapPlug=map;
+        }else {
+mapString = map;
+        }
+        return
     }
+
 }
 

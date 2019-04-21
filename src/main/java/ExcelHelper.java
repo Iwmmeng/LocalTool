@@ -23,37 +23,30 @@ public class ExcelHelper {
     public static void createExcel(String fileName, List<File> list, Map<String, List<String>> map) throws IOException {
         String sheetName;
         HSSFWorkbook workbook = new HSSFWorkbook();
-//        if(list.contains("plug")){
-//            sheetName = "plug";
-//        }else {
-//            sheetName = "string";
-//        }
-        HSSFSheet sheet = workbook.createSheet("plug");
-
-        //创建行表头(0列，从第1行开始)
-        int count = 1;
-        for (int i = 0; i < list.size(); i++) {
-            HSSFRow row = sheet.createRow(count++);
-            HSSFCell cellFileName = row.createCell((0));
-            cellFileName.setCellValue(list.get(i).toString());
+        if(list.contains("plug")){
+            sheetName = "plug";
+        }else {
+            sheetName = "string";
         }
-        System.out.println("===========创建行表头成功==========");
-        //创建列表头，并填充值进去（0行，第1列开始）
-        int coloum = 1;
-        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            HSSFRow row = sheet.createRow(0);
-            HSSFCell cellKey = row.createCell(coloum++);
-            cellKey.setCellValue(entry.getKey());
-            //填充map的value中list[String]的值
-            //创建容纳map中list值的cell
-            for (int tmpColoum = 1; tmpColoum <= map.size(); tmpColoum++) {
-                for (int j = 0; j < list.size(); j++) {
-                    HSSFRow row2 = sheet.createRow(j + 1);
-                    HSSFCell cellValue = row2.createCell(tmpColoum);
-                    cellValue.setCellValue(entry.getValue().get(j));
-                }
-            }
+//        HSSFSheet sheet = workbook.createSheet("plug");
+        HSSFSheet sheet = workbook.createSheet(sheetName);
 
+        //把文件名作为列表头（0行，从第一列开始）
+        int count = 1;
+        HSSFRow rowTitle = sheet.createRow(0);
+        for (int i = 0; i < list.size(); i++) {
+            HSSFCell cellFileName = rowTitle.createCell(count++);
+            cellFileName.setCellValue(list.get(i).getParent());
+        }
+        int rowColloum = 1;
+        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            HSSFRow row = sheet.createRow(rowColloum++);
+            HSSFCell cellKey = row.createCell(0);
+            cellKey.setCellValue(entry.getKey());
+            for (int j = 0; j < entry.getValue().size(); j++) {
+                HSSFCell cellValue = row.createCell(j + 1);
+                cellValue.setCellValue(entry.getValue().get(j));
+            }
         }
         FileOutputStream fos = new FileOutputStream(new File(fileName));
         workbook.write(fos);
@@ -61,6 +54,40 @@ public class ExcelHelper {
         fos.close();
     }
 }
+
+//
+//        //创建行表头(0列，从第1行开始)
+//        int count = 1;
+//        for (int i = 0; i < list.size(); i++) {
+//            HSSFRow row = sheet.createRow(count++);
+//            HSSFCell cellFileName = row.createCell((0));
+//            cellFileName.setCellValue(list.get(i).getParent());
+//            System.out.println("cellFileName: "+ cellFileName);
+//        }
+//        System.out.println("===========创建行表头成功==========");
+//        //创建列表头，并填充值进去（0行，第1列开始）
+//        int coloum = 1;
+//        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+//            HSSFRow row = sheet.createRow(0);
+//            HSSFCell cellKey = row.createCell(coloum++);
+//            cellKey.setCellValue(entry.getKey());
+//            //填充map的value中list[String]的值
+//            //创建容纳map中list值的cell
+//            for (int tmpColoum = 1; tmpColoum <= map.size(); tmpColoum++) {
+//                for (int j = 0; j < list.size(); j++) {
+//                    HSSFRow row2 = sheet.createRow(j + 1);
+//                    HSSFCell cellValue = row2.createCell(tmpColoum);
+//                    cellValue.setCellValue(entry.getValue().get(j));
+//                    System.out.println("cellValue: "+ cellValue);
+//                }
+//            }
+//        }
+//        FileOutputStream fos = new FileOutputStream(new File(fileName));
+//        workbook.write(fos);
+//        workbook.close();
+//        fos.close();
+//    }
+
 
 
 
