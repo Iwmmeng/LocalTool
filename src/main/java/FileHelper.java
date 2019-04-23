@@ -27,12 +27,13 @@ public class FileHelper {
 
     public static void main(String[] args) throws DocumentException, IOException {
 //        parseXml();
-        File file = new File("/Users/huamiumiu/Miot/Localization/localFile");
+//        File file = new File("/Users/huamiumiu/Miot/Localization/localFile");
+        File file = new File("/Users/huamiumiu/Miot/workCode/LocalTool/com.roborock.sapphire.android_2019030119560994161.zip.out");
         List<File> filesList = new ArrayList<File>();
         getAllDirsAndFiles(filesList, file);
         System.out.println(filesList);
         System.out.println(filesList.size());
-        getXMLList(filesList);
+//        getXMLList(filesList);
 
 
     }
@@ -50,38 +51,25 @@ public class FileHelper {
         System.out.println("stringList:" + stringList);
         System.out.println("string size:" + stringList.size());
         for (File xmlFile : plugStringList) {
-            parseAllXml(xmlFile.toString());
+            parseAllXml(map,xmlFile);
         }
-        for (File xmlFile : stringList) {
-            parseAllXml(xmlFile.toString());
-        }
+//        for (File xmlFile : stringList) {
+//            parseAllXml(xmlFile.toString());
+//        }
 
         for (Map.Entry<String, List<String>> mapEntry : map.entrySet()) {
             System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
         }
-        System.out.println("keys size: "+map.keySet().size());
-        System.out.println("map size"+ map.size());
+        System.out.println("keys size: " + map.keySet().size());
+        System.out.println("map size" + map.size());
 
         String filepath = "/Users/huamiumiu/Miot/Localization/11.xls";
-        ExcelHelper.createExcel(filepath,plugStringList,map);
-        ExcelHelper.createExcel(filepath,stringList,map);
-
-
-
-
-//        for (Map.Entry<String, List<String>> mapEntry : plugNotTranslateMap.entrySet()) {
-//            System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
-//        }
-//        for (File xmlFile : stringList) {
-//            parseXml(xmlFile.toString());
-//        }
-//        for (Map.Entry<String, List<String>> mapEntry : stringNotTranslateMap.entrySet()) {
-//            System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
-//        }
+//        ExcelHelper.createExcel(filepath, plugStringList, map);
+//        ExcelHelper.createExcel(filepath, stringList, map);
 
     }
 
-    public static void getAllDirsAndFiles(List<File> files, File file) {
+    public static List<File>  getAllDirsAndFiles(List<File> files, File file) {
         File[] fileLists = file.listFiles();
         for (File f : fileLists) {
             if (f.isDirectory()) {
@@ -90,10 +78,17 @@ public class FileHelper {
                 if (f.toString().contains(".DS_Store")) {
                     System.out.println("not we want file,its .DS_Store");
                 } else {
-                    files.add(f);
+                    System.out.println("f.getParent(): " + f.getParent());
+                    if (f.getParent().contains("values-")) {
+                        files.add(f);
+                    } else {
+                        System.out.println("file is not the strings.xml or plug_strings.xml");
+                    }
+
                 }
             }
         }
+        return files;
     }
 
     //主要用于找出异常点
@@ -141,11 +136,12 @@ public class FileHelper {
             }
         }
     }
-//把所有的值都记录存到map
-    public static Map<String, List<String>> parseAllXml(String filePath) throws DocumentException {
+
+    //把所有的值都记录存到map
+    public static Map parseAllXml(Map<String, List<String>> map,File filePath) throws DocumentException {
         SAXReader reader = new SAXReader();
 //        Document doc = reader.read(new File("/Users/huamiumiu/Miot/Localization/localFile/de/plug_strings.xml"));
-        Document doc = reader.read(new File(filePath));
+        Document doc = reader.read(filePath);
         Element root = doc.getRootElement();
         List<Element> childElements = root.elements();
         for (Element child : childElements) {
@@ -153,9 +149,9 @@ public class FileHelper {
             List<Attribute> attributeList = child.attributes();
             for (Attribute attr : attributeList) {
                 if (map.containsKey(attr.getValue())) {
-                    List<String> valueList= map.get(attr.getValue());
+                    List<String> valueList = map.get(attr.getValue());
                     valueList.add(child.getText());
-                    map.put(attr.getValue(),valueList);
+                    map.put(attr.getValue(), valueList);
                 } else {
                     System.out.println("=====新增filepath：" + filePath + "=====新增key：" + attr.getValue() + "=======新增text：" + child.getText());
                     List<String> newValueList = new ArrayList<String>();
@@ -164,13 +160,15 @@ public class FileHelper {
                 }
             }
         }
-        if(filePath.contains("plug")){
-            mapPlug=map;
-        }else {
-mapString = map;
-        }
-        return
+        return map;
     }
-
+    public static List<File> fileListSortByName(List<File> fileNameTotalList,List<File> fileNamesubList, String fileName) {
+        for(File file:fileNameTotalList){
+            if(file.getName().contains(fileName)){
+                fileNamesubList.add(file);
+            }
+        }
+        return fileNamesubList;
+    }
 }
 

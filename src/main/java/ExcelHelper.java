@@ -1,26 +1,30 @@
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExcelHelper {
-    public static void main(String[] args) {
-    }
+import static org.apache.poi.ss.usermodel.FillPatternType.SOLID_FOREGROUND;
 
+public class ExcelHelper {
     /**
-     * key1    key2  key3
-     * file1     v11    v12    v13
-     * file2
+     *          file1   file2   file3
+     * key1     v11     v12     v13
+     * key2     v21     v22      v23
      **/
 
-    public static void createExcel(String fileName, List<File> list, Map<String, List<String>> map) throws IOException {
+    public static void createExcel(File excelFile, List<File> list, Map<String, List<String>> map) throws IOException {
         String sheetName;
         HSSFWorkbook workbook = new HSSFWorkbook();
         if(list.contains("plug")){
@@ -28,7 +32,6 @@ public class ExcelHelper {
         }else {
             sheetName = "string";
         }
-//        HSSFSheet sheet = workbook.createSheet("plug");
         HSSFSheet sheet = workbook.createSheet(sheetName);
 
         //把文件名作为列表头（0行，从第一列开始）
@@ -36,95 +39,34 @@ public class ExcelHelper {
         HSSFRow rowTitle = sheet.createRow(0);
         for (int i = 0; i < list.size(); i++) {
             HSSFCell cellFileName = rowTitle.createCell(count++);
-            cellFileName.setCellValue(list.get(i).getParent());
+            cellFileName.setCellValue(list.get(i).getParentFile().getName());
         }
+        //把map的key作为行表头（0列，从第一行开始）
         int rowColloum = 1;
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
+            Map<String,IndexedColors> colorsMap = new HashMap<String, IndexedColors>();
+            int colorIndex =20;
+            for(String s:entry.getValue()){
+                colorsMap.put(s,IndexedColors.fromInt(colorIndex++));
+            }
             HSSFRow row = sheet.createRow(rowColloum++);
             HSSFCell cellKey = row.createCell(0);
             cellKey.setCellValue(entry.getKey());
             for (int j = 0; j < entry.getValue().size(); j++) {
+                HSSFCellStyle style = workbook.createCellStyle();
+                style.setFillForegroundColor(colorsMap.get(entry.getValue().get(j)).getIndex());
+                style.setFillPattern(SOLID_FOREGROUND);
                 HSSFCell cellValue = row.createCell(j + 1);
                 cellValue.setCellValue(entry.getValue().get(j));
+                cellValue.setCellStyle(style);
             }
         }
-        FileOutputStream fos = new FileOutputStream(new File(fileName));
+        FileOutputStream fos = new FileOutputStream(excelFile);
         workbook.write(fos);
         workbook.close();
         fos.close();
     }
 }
-
-//
-//        //创建行表头(0列，从第1行开始)
-//        int count = 1;
-//        for (int i = 0; i < list.size(); i++) {
-//            HSSFRow row = sheet.createRow(count++);
-//            HSSFCell cellFileName = row.createCell((0));
-//            cellFileName.setCellValue(list.get(i).getParent());
-//            System.out.println("cellFileName: "+ cellFileName);
-//        }
-//        System.out.println("===========创建行表头成功==========");
-//        //创建列表头，并填充值进去（0行，第1列开始）
-//        int coloum = 1;
-//        for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-//            HSSFRow row = sheet.createRow(0);
-//            HSSFCell cellKey = row.createCell(coloum++);
-//            cellKey.setCellValue(entry.getKey());
-//            //填充map的value中list[String]的值
-//            //创建容纳map中list值的cell
-//            for (int tmpColoum = 1; tmpColoum <= map.size(); tmpColoum++) {
-//                for (int j = 0; j < list.size(); j++) {
-//                    HSSFRow row2 = sheet.createRow(j + 1);
-//                    HSSFCell cellValue = row2.createCell(tmpColoum);
-//                    cellValue.setCellValue(entry.getValue().get(j));
-//                    System.out.println("cellValue: "+ cellValue);
-//                }
-//            }
-//        }
-//        FileOutputStream fos = new FileOutputStream(new File(fileName));
-//        workbook.write(fos);
-//        workbook.close();
-//        fos.close();
-//    }
-
-
-
-
-
-
-//        for (int i = 1; i <= list.size()+1; i++) {
-//            Object[] keyList =  map.keySet().toArray();
-//            HSSFRow row = sheet.createRow(i-1); // 在索引i的位置创建行
-//            if((i-1)==0) {
-//                for (int colValue = 0; colValue < map.size(); colValue++) {
-//                    HSSFCell cellKey = row.createCell((colValue + 1));
-//                    cellKey.setCellValue(keyList[colValue].toString());
-//                }
-//            }else {
-//                for (int colValue = 0; colValue < map.size(); colValue++) {
-//                    HSSFCell cellKey = row.createCell((colValue + 1));
-//                    cellKey.setCellValue(map.get(keyList[colValue]).get(i-1));
-//                }
-//            }
-
-
-//                for (int colValue = 0; colValue < map.size(); colValue++) {
-//                    HSSFCell cellKey = row.createCell((colValue + 1));
-////建立列索引
-//                            if(i==0){
-//                                cellKey.setCellValue(keyList[colValue].toString());
-//                            }else {
-//                                cellKey.setCellValue(map.get(keyList[colValue]).get(i-1));
-//                            }
-//                    }
-                    //建立行索引
-//                    HSSFCell cellFileName = row.createCell((0));
-//                    if(i!=0) {
-//                        cellFileName.setCellValue(list.get(i-1).getParent());
-//                    } else continue;
-//            HSSFRow row2 = sheet.createRow(list.size()); // 在索引i的位置创建行
-
 
 
 
