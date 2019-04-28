@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/clean_history_bg" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:orientation="vertical" android:background="@drawable/clean_history_summary_bg" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <include layout="@layout/title_bar_transparent_white" />
+        <LinearLayout android:layout_gravity="center_horizontal" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="6.0dip" android:layout_marginBottom="20.0dip">
+            <LinearLayout android:orientation="vertical" android:id="@id/clean_duration_frame" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <TextView android:textSize="@dimen/clean_history_summary_number_text_size" android:textColor="@color/clean_history_summary_number_text" android:gravity="center" android:id="@id/clean_duration_number" android:paddingTop="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/clean_history_summary_placeholder" />
+                <TextView android:textSize="@dimen/clean_history_summary_label_text_size" android:textColor="@color/clean_history_summary_number_text" android:gravity="center" android:id="@id/clean_duration_label" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/clean_history_summary_minute" />
+            </LinearLayout>
+            <View android:background="@color/white_30_transparent" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip" />
+            <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <TextView android:textSize="@dimen/clean_history_summary_number_text_size" android:textColor="@color/clean_history_summary_number_text" android:gravity="center" android:id="@id/clean_area_number" android:paddingTop="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/clean_history_summary_placeholder" />
+                <TextView android:textSize="@dimen/clean_history_summary_label_text_size" android:textColor="@color/clean_history_summary_number_text" android:gravity="center" android:id="@id/clean_area_symbol" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="" />
+            </LinearLayout>
+            <View android:background="@color/white_30_transparent" android:layout_width="1.0dip" android:layout_height="fill_parent" android:layout_marginTop="20.0dip" android:layout_marginBottom="20.0dip" />
+            <LinearLayout android:orientation="vertical" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="1.0">
+                <TextView android:textSize="@dimen/clean_history_summary_number_text_size" android:textColor="@color/clean_history_summary_number_text" android:gravity="center" android:id="@id/clean_times_total" android:paddingTop="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/clean_history_summary_placeholder" />
+                <TextView android:textSize="@dimen/clean_history_summary_label_text_size" android:textColor="@color/clean_history_summary_number_text" android:gravity="center" android:paddingBottom="5.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/clean_history_summary_time" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView android:textSize="@dimen/list_item_title" android:textColor="@color/list_item_title" android:gravity="center" android:id="@id/empty_clean_record" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="@string/empty_clean_record" />
+    <com.xiaomi.smarthome.common.ui.widget.CustomPullDownRefreshListView android:id="@id/clean_history_list" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="fill_parent" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" />
+</LinearLayout>

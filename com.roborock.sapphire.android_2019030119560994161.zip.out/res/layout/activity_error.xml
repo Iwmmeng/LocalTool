@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/error_background" android:paddingTop="20.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include android:id="@id/error_title_bar" layout="@layout/title_bar_transparent_black" />
+    <android.opengl.GLSurfaceView android:id="@id/error_animation" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginTop="10.0dip" android:layout_marginBottom="10.0dip" android:layout_weight="1.0" />
+    <TextView android:textSize="@dimen/error_title_text_size" android:textColor="@color/error_title_color" android:gravity="top|center" android:id="@id/error_title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip" android:layout_marginBottom="10.0dip" />
+    <ScrollView android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip" android:layout_marginBottom="10.0dip" android:layout_weight="0.5">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <TextView android:textSize="@dimen/error_content_text_size" android:textColor="@color/error_content_color" android:gravity="center" android:layout_gravity="center_horizontal" android:id="@id/error_content" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+            <TextView android:textSize="@dimen/error_sub_content_text_size" android:textColor="@color/error_content_color" android:id="@id/error_sub_content" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+    <TextView android:textSize="@dimen/error_content_text_size" android:textColor="@color/error_content_color" android:layout_gravity="left" android:id="@id/virtual_wall_text" android:visibility="visible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30.0dip" android:layout_marginRight="30.0dip" android:layout_marginBottom="10.0dip" />
+    <Button android:textSize="@dimen/error_button_text_size" android:textColor="@color/error_confirm_color" android:gravity="center" android:layout_gravity="center" android:id="@id/button_confirm" android:background="@drawable/button_confirm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="43.0dip" android:text="@string/button_confirm" />
+</LinearLayout>

@@ -30,13 +30,16 @@ public class FileHelper {
 //        File file = new File("/Users/huamiumiu/Miot/Localization/localFile");
         File file = new File("/Users/huamiumiu/Miot/workCode/LocalTool/com.roborock.sapphire.android_2019030119560994161.zip.out");
         List<File> filesList = new ArrayList<File>();
-        getAllDirsAndFiles(filesList, file);
+//        getAllDirsAndFiles(filesList, file);
         System.out.println(filesList);
         System.out.println(filesList.size());
 //        getXMLList(filesList);
 
 
     }
+
+//todo  1. 获取所有文件的方法  done  2. 把这些文件都给拆开  3. 创建1个excel，2个sheet done
+
 
     public static void getXMLList(List<File> filesList) throws DocumentException, IOException {
         for (File file : filesList) {
@@ -69,26 +72,17 @@ public class FileHelper {
 
     }
 
-    public static List<File>  getAllDirsAndFiles(List<File> files, File file) {
-        File[] fileLists = file.listFiles();
-        for (File f : fileLists) {
-            if (f.isDirectory()) {
-                getAllDirsAndFiles(files, f);
-            } else {
-                if (f.toString().contains(".DS_Store")) {
-                    System.out.println("not we want file,its .DS_Store");
-                } else {
-                    System.out.println("f.getParent(): " + f.getParent());
-                    if (f.getParent().contains("values-")) {
-                        files.add(f);
-                    } else {
-                        System.out.println("file is not the strings.xml or plug_strings.xml");
-                    }
-
-                }
+    public static List<File>  getAllDirsAndFiles(List<File> fileNameList, File file,String xmlFileName) {
+        if (file.exists() && file.isFile()) {
+            if (file.getName().equals(xmlFileName) && file.getParentFile().getName().startsWith("values-")) {
+                fileNameList.add(file);
+            }
+        } else {
+            for (File sub : file.listFiles()) {
+                getAllDirsAndFiles( fileNameList,sub,xmlFileName);
             }
         }
-        return files;
+        return fileNameList;
     }
 
     //主要用于找出异常点

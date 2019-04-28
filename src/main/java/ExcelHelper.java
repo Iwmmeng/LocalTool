@@ -24,22 +24,13 @@ public class ExcelHelper {
      * key2     v21     v22      v23
      **/
 
-    public static void createExcel(File excelFile, List<File> list, Map<String, List<String>> map) throws IOException {
-        String sheetName;
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        if(list.contains("plug")){
-            sheetName = "plug";
-        }else {
-            sheetName = "string";
-        }
-        HSSFSheet sheet = workbook.createSheet(sheetName);
-
+    public static void fillExcel(List<File> fileNameList, Map<String, List<String>> map,HSSFWorkbook workbook,HSSFSheet sheet) throws IOException {
         //把文件名作为列表头（0行，从第一列开始）
         int count = 1;
         HSSFRow rowTitle = sheet.createRow(0);
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i < fileNameList.size(); i++) {
             HSSFCell cellFileName = rowTitle.createCell(count++);
-            cellFileName.setCellValue(list.get(i).getParentFile().getName());
+            cellFileName.setCellValue(fileNameList.get(i).getParentFile().getName());
         }
         //把map的key作为行表头（0列，从第一行开始）
         int rowColloum = 1;
@@ -61,10 +52,6 @@ public class ExcelHelper {
                 cellValue.setCellStyle(style);
             }
         }
-        FileOutputStream fos = new FileOutputStream(excelFile);
-        workbook.write(fos);
-        workbook.close();
-        fos.close();
     }
 }
 

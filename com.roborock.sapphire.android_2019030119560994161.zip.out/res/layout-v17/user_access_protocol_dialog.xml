@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/dialog_bg" android:layout_width="fill_parent" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/user_access_dialog_title" android:textStyle="bold" android:textColor="@color/dialog_title_txt_color" android:layout_gravity="center" android:padding="20.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/user_access_protocol_dialog_title" />
+    <LinearLayout android:layout_gravity="center" android:orientation="vertical" android:paddingBottom="20.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <LinearLayout android:layout_gravity="left" android:orientation="horizontal" android:paddingLeft="@dimen/user_access_dialog_content_padding" android:paddingRight="@dimen/user_access_dialog_content_padding" android:paddingBottom="10.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingStart="@dimen/user_access_dialog_content_padding" android:paddingEnd="@dimen/user_access_dialog_content_padding">
+            <TextView android:textSize="@dimen/user_access_dialog_subtitle" android:textColor="@color/dialog_title_txt_color" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/user_access_protocol_msg1" />
+            <TextView android:textSize="@dimen/user_access_dialog_subtitle" android:textColor="@color/user_access_protocol_link" android:id="@id/user_access_protocol_link" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout android:layout_gravity="left" android:orientation="horizontal" android:id="@id/user_improve_plan_block" android:paddingLeft="@dimen/user_access_dialog_content_padding" android:paddingRight="@dimen/user_access_dialog_content_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:paddingStart="@dimen/user_access_dialog_content_padding" android:paddingEnd="@dimen/user_access_dialog_content_padding">
+            <CheckBox android:layout_gravity="left|center" android:id="@id/user_improve_plan_checkbox" android:paddingRight="4.0dip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:button="@drawable/rr_check_icon" android:paddingEnd="4.0dip" />
+            <TextView android:textSize="@dimen/user_access_dialog_user_improve" android:textColor="@color/dialog_sub_title_txt_color" android:layout_gravity="left|center" android:id="@id/user_improve_plan_tv" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

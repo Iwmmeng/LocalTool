@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="#ffffffff" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/title_bar_black" />
+    <TextView android:textSize="@dimen/volume_adjust_desc_text_size" android:textColor="@color/black_50_transparent" android:background="@color/list_item_bg_color" android:paddingLeft="@dimen/volume_adjust_padding_horizontal" android:paddingTop="@dimen/volume_adjust_desc_padding_top" android:paddingRight="@dimen/volume_adjust_padding_horizontal" android:paddingBottom="@dimen/volume_adjust_desc_padding_bottom" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="@string/robot_volume_adjust_desc" />
+    <View android:background="@color/black_10_transparent" android:layout_width="fill_parent" android:layout_height="@dimen/volume_adjust_line_sep_height" />
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="#ffffffff" android:paddingLeft="@dimen/volume_adjust_padding_horizontal" android:paddingTop="@dimen/volume_adjust_padding_vertical" android:paddingRight="@dimen/volume_adjust_padding_horizontal" android:paddingBottom="@dimen/volume_adjust_padding_vertical" android:layout_width="fill_parent" android:layout_height="@dimen/volume_adjust_height">
+        <ImageView android:layout_gravity="center_vertical" android:layout_width="@dimen/volume_adjust_image_size" android:layout_height="@dimen/volume_adjust_image_size" android:src="@drawable/volume_small" />
+        <SeekBar android:layout_gravity="center_vertical" android:id="@id/seekBar_adjust_volume" android:layout_width="0.0dip" android:layout_height="wrap_content" android:maxHeight="@dimen/volume_adjust_seek_bar_height" android:max="65" android:progress="30" android:progressDrawable="@drawable/seek_bar_style" android:thumb="@drawable/seek_bar_thumb" android:layout_weight="1.0" />
+        <ImageView android:layout_gravity="center_vertical" android:layout_width="@dimen/volume_adjust_image_size" android:layout_height="@dimen/volume_adjust_image_size" android:src="@drawable/volume_loud" />
+    </LinearLayout>
+    <View android:background="@color/black_30_transparent" android:layout_width="fill_parent" android:layout_height="@dimen/volume_adjust_line_sep_height" android:layout_marginLeft="@dimen/volume_adjust_padding_horizontal" android:layout_marginRight="@dimen/volume_adjust_padding_horizontal" />
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <Button android:textSize="@dimen/volume_adjust_btn_audition_text_size" android:textColor="@color/black_80_transparent" android:id="@id/volume_try" android:background="@drawable/volume_try" android:layout_width="fill_parent" android:layout_height="@dimen/volume_adjust_btn_audition_height" android:layout_marginLeft="@dimen/volume_adjust_padding_horizontal" android:layout_marginRight="@dimen/volume_adjust_padding_horizontal" android:layout_marginBottom="@dimen/volume_adjust_btn_audition_margin_bottom" android:text="@string/robot_volume_adjust_test" android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/main_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/title_bar_consumable" />
+    <com.xiaomi.smarthome.common.ui.widget.CustomPullDownRefreshListView android:id="@id/consumable_list" android:background="@color/main_bg_color" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_marginLeft="10.0dip" android:layout_marginRight="10.0dip" android:layout_weight="87.0" />
+    <RelativeLayout android:id="@id/button_wrapper" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="13.0">
+        <Button android:textSize="@dimen/consumable_button_text_size" android:textColor="@color/white" android:id="@id/parts_buy" android:background="@drawable/consumable_buy" android:layout_width="wrap_content" android:layout_height="@dimen/consumable_buy_height" android:text="@string/parts_buy" android:layout_centerInParent="true" android:textAllCaps="false" android:textAlignment="center" />
+    </RelativeLayout>
+</LinearLayout>

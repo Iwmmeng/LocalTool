@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="rectangle"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/volume_try_background_pressed" />
+    <corners android:radius="20.0dip" />
+    <stroke android:width="@dimen/consumable_buy_border_width" android:color="@color/consumable_buy_border" />
+</shape>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/list_item_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/title_bar_black_wide_title" />
+    <ScrollView android:id="@id/content" android:scrollbars="none" android:layout_width="fill_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent">
+            <FrameLayout android:layout_width="fill_parent" android:layout_height="wrap_content">
+                <ImageView android:gravity="center" android:background="@color/black" android:layout_width="fill_parent" android:layout_height="fill_parent" android:src="@drawable/quick_start" android:scaleType="fitCenter" android:adjustViewBounds="true" />
+                <ImageView android:layout_gravity="center" android:id="@id/video_play_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/video_play" />
+            </FrameLayout>
+            <com.rockrobo.ui.RRListView android:id="@id/guide_list_view" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+            <View android:background="@color/list_separate_line_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+            <Space android:background="@color/user_guide_sep_block" android:layout_width="fill_parent" android:layout_height="50.0dip" />
+            <TextView android:textSize="@dimen/list_item_subtitle2" android:textColor="@color/list_item_subtitle2" android:id="@id/user_improve_plan_tv" android:background="@color/user_guide_sep_block" android:paddingLeft="@dimen/list_item_margin" android:paddingTop="10.0dip" android:paddingRight="@dimen/list_item_margin" android:paddingBottom="30.0dip" android:visibility="gone" android:layout_width="fill_parent" android:layout_height="wrap_content" android:lineSpacingExtra="@dimen/consumable_desc_line_space_extra" android:breakStrategy="1" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

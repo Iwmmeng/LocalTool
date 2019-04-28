@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@color/list_item_bg_color" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <include layout="@layout/title_bar_black" />
+    <TableLayout android:layout_gravity="center" android:id="@id/oba_info_content" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20.0dip" android:divider="@drawable/oba_table_v_divider" android:showDividers="middle|end|beginning">
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_sn_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_sn" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_firmware_ver_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_firmware_ver" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_location_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_location" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_language_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_language" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_wifi_plan_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_wifi_plan" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_log_server_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_log_server" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_timezone_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_info_timezone" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_bom_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_bom" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+        <TableRow android:divider="@drawable/oba_table_h_divider" android:showDividers="middle|end|beginning">
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/oba_name_title" />
+            <TextView android:textSize="@dimen/oba_item_title" android:textColor="@color/list_item_title" android:id="@id/oba_name" android:padding="@dimen/oba_item_padding" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>

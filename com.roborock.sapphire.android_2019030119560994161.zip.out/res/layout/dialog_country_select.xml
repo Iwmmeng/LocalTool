@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_gravity="center_horizontal" android:orientation="vertical" android:background="@drawable/country_select_background" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView android:textSize="@dimen/country_select_title" android:textColor="@color/country_select_title" android:gravity="center" android:id="@id/title" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/country_select_title_top_margin" android:layout_marginBottom="@dimen/country_select_title_bottom_margin" android:text="@string/country_select_title" />
+    <TextView android:textSize="@dimen/country_select_subtitle" android:textColor="@color/country_select_subtitle" android:gravity="center" android:id="@id/subtitle" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_marginBottom="@dimen/country_select_subtitle_bottom_margin" android:text="@string/country_select_subtitle_format" />
+    <View android:background="@color/list_separate_line_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <ListView android:id="@id/country_list" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="1.0" />
+    <View android:background="@color/list_separate_line_color" android:layout_width="fill_parent" android:layout_height="1.0px" />
+    <LinearLayout android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="@dimen/list_item_min_height">
+        <TextView android:textSize="@dimen/list_item_title" android:textColor="@color/country_select_button_text" android:gravity="center" android:id="@id/cancel" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/quit" android:layout_weight="1.0" />
+        <View android:background="@color/list_separate_line_color" android:layout_width="1.0px" android:layout_height="fill_parent" />
+        <TextView android:textSize="@dimen/list_item_title" android:textColor="@color/country_select_button_text" android:gravity="center" android:id="@id/ok" android:layout_width="0.0dip" android:layout_height="fill_parent" android:text="@string/ok" android:layout_weight="1.0" />
+    </LinearLayout>
+</LinearLayout>

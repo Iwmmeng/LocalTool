@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_back">Parte posteriore</string>
+    <string name="action_menu">Imposta</string>
+    <string name="cancel">Annulla</string>
+    <string name="ignore">Ignora</string>
+    <string name="know_button">Ho capito</string>
+    <string name="ok_button">OK</string>
+    <string name="picker_day">Giorno</string>
+    <string name="picker_hour">"h "</string>
+    <string name="picker_minite">"m "</string>
+    <string name="picker_month">"m "</string>
+    <string name="picker_year">"a "</string>
+    <string name="progress_dialog_already">Fine</string>
+    <string name="pull_down_refresh">Scorri verso il basso per aggiornare</string>
+    <string name="refreshing">Aggiornamento in corso…</string>
+    <string name="refreshing_no_point">Caricamento in corso…</string>
+    <string name="refreshing_retry">Impossibile caricare, riprova</string>
+    <string name="release_to_refresh">Rilascia per aggiornare</string>
+    <string name="select_all">Seleziona tutte</string>
+    <string name="setting_title">Impostazioni generali</string>
+    <string name="unselect_all">Deseleziona</string>
+</resources>

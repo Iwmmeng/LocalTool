@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/remote_controller_bg" android:paddingBottom="@dimen/remote_control_bottom_margin" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/title_bar_transparent_white" />
+    <LinearLayout android:layout_gravity="center_horizontal" android:orientation="horizontal" android:background="@drawable/rc_selector_bg" android:padding="@dimen/rc_selector_stroke_width" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5.0dip">
+        <CheckedTextView android:textSize="15.0sp" android:textColor="@color/rc_selector_text_color" android:gravity="center" android:id="@id/rc_button_check_text" android:background="@drawable/rc_selector_left_bg" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/rc_button" />
+        <CheckedTextView android:textSize="15.0sp" android:textColor="@color/rc_selector_text_color" android:gravity="center" android:id="@id/rc_stick_check_text" android:background="@drawable/rc_selector_right_bg" android:focusable="true" android:clickable="true" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/rc_nav_stick" />
+    </LinearLayout>
+    <RelativeLayout android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="8.0">
+        <TextView android:id="@id/rc_starting" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/rc_starting_up" android:layout_alignParentTop="true" android:layout_centerHorizontal="true" />
+        <FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+            <com.rockrobo.ui.rc.RRButtonRC android:layout_gravity="center" android:id="@id/rc_button" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+            <com.rockrobo.ui.rc.RRStickRC android:layout_gravity="center" android:id="@id/rc_stick" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        </FrameLayout>
+    </RelativeLayout>
+    <LinearLayout android:gravity="center" android:layout_gravity="center" android:orientation="horizontal" android:layout_width="fill_parent" android:layout_height="0.0dip" android:layout_weight="2.0">
+        <com.rockrobo.ui.HeartBeatView android:id="@id/spot_clean" android:layout_width="@dimen/remote_control_bottom_button_width" android:layout_height="@dimen/remote_control_bottom_button_height" app:hb_image="@drawable/rc_ctrl_spot_clean" app:hb_image_text_gap="@dimen/rc_heart_beat_button_image_text_gap" app:hb_text="@string/spot_clean" app:hb_text_color="@color/rc_ctrl_button_text_color" app:hb_text_size="@dimen/remote_control_bottom_button_text" />
+        <com.rockrobo.ui.HeartBeatView android:id="@id/clean" android:layout_width="@dimen/remote_control_bottom_button_width" android:layout_height="@dimen/remote_control_bottom_button_height" android:layout_marginLeft="40.0dip" android:layout_marginRight="40.0dip" app:hb_image="@drawable/rc_ctrl_clean" app:hb_image_text_gap="@dimen/rc_heart_beat_button_image_text_gap" app:hb_text="@string/clean" app:hb_text_color="@color/rc_ctrl_button_text_color" app:hb_text_size="@dimen/remote_control_bottom_button_text" />
+        <com.rockrobo.ui.HeartBeatView android:id="@id/charge" android:layout_width="@dimen/remote_control_bottom_button_width" android:layout_height="@dimen/remote_control_bottom_button_height" app:hb_image="@drawable/rc_ctrl_go_charge" app:hb_image_text_gap="@dimen/rc_heart_beat_button_image_text_gap" app:hb_text="@string/charge_text" app:hb_text_color="@color/rc_ctrl_button_text_color" app:hb_text_size="@dimen/remote_control_bottom_button_text" />
+    </LinearLayout>
+</LinearLayout>

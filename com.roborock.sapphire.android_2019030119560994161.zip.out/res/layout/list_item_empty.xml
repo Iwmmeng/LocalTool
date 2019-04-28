@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:orientation="vertical" android:background="@color/user_guide_sep_block" android:layout_width="fill_parent" android:layout_height="fill_parent" android:minHeight="@dimen/list_item_empty_min_height"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <View android:background="@color/list_separate_line_color" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_alignParentTop="true" />
+    <View android:id="@id/list_separator" android:background="@color/list_separate_line_color" android:layout_width="fill_parent" android:layout_height="1.0px" android:layout_alignParentBottom="true" />
+</RelativeLayout>
