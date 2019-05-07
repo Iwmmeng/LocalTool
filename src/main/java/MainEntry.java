@@ -20,7 +20,7 @@ public class MainEntry {
          * 需要判断当前路径下是否有APK_FILE，有需要先删除，没有直接运行生成改文件。
          */
 //        File zipFile = new File(args[0]);
-        System.out.println("pwd:" + ShellUtil.exec("pwd"));
+        System.out.println(System.getProperty("user.dir"));
         File zipFile = new File("/Users/huamiumiu/Desktop/本地化工具/com.roborock.sapphire.android_2019030119560994161.zip");
         File APK_FILE = new File(zipFile + ".out");
         System.out.println("apkFile: " + APK_FILE);
