@@ -5,6 +5,8 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,6 +20,7 @@ import java.util.Map;
 import static org.apache.poi.ss.usermodel.FillPatternType.SOLID_FOREGROUND;
 
 public class ExcelHelper {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ExcelHelper.class);
     /**
      *          file1   file2   file3
      * key1     v11     v12     v13
@@ -36,7 +39,7 @@ public class ExcelHelper {
         int rowColloum = 1;
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
             Map<String,IndexedColors> colorsMap = new HashMap<String, IndexedColors>();
-            int colorIndex =20;
+            int colorIndex =40;
             for(String s:entry.getValue()){
                 colorsMap.put(s,IndexedColors.fromInt(colorIndex++));
             }

@@ -74,7 +74,8 @@ public class FileHelper {
 
     public static List<File>  getAllDirsAndFiles(List<File> fileNameList, File file,String xmlFileName) {
         if (file.exists() && file.isFile()) {
-            if (file.getName().equals(xmlFileName) && file.getParentFile().getName().startsWith("values-")) {
+//            if (file.getName().equals(xmlFileName) && file.getParentFile().getName().startsWith("values-")) {
+            if (file.getName().startsWith(xmlFileName) ) {
                 fileNameList.add(file);
             }
         } else {
@@ -147,7 +148,7 @@ public class FileHelper {
                     valueList.add(child.getText());
                     map.put(attr.getValue(), valueList);
                 } else {
-                    System.out.println("=====新增filepath：" + filePath + "=====新增key：" + attr.getValue() + "=======新增text：" + child.getText());
+//                    System.out.println("=====新增filepath：" + filePath + "=====新增key：" + attr.getValue() + "=======新增text：" + child.getText());
                     List<String> newValueList = new ArrayList<String>();
                     newValueList.add(child.getText());
                     map.put(attr.getValue(), newValueList);
