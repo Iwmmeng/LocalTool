@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape android:shape="rectangle"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <size android:height="@dimen/rc_selector_button_height" android:width="@dimen/rc_selector_button_width" />
-    <corners android:radius="@dimen/rc_selector_button_radius" />
-</shape>

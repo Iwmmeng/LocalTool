@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape android:shape="rectangle"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <size android:height="@dimen/voice_pkg_use_btn_bg_height" android:width="@dimen/voice_pkg_use_btn_bg_width" />
-    <corners android:radius="@dimen/voice_pkg_use_btn_bg_radius" />
-    <stroke android:width="@dimen/voice_pkg_btn_stroke_width" android:color="@color/voice_pkg_curr_use_btn_border" />
-</shape>

@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <translate android:duration="@integer/map_view_slide_in_duration" android:startOffset="@integer/main_view_cover_fade_in_duration" android:fromYDelta="-100.0%" android:toYDelta="0.0" />
-</set>
