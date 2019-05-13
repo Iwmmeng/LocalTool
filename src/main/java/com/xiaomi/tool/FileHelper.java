@@ -1,3 +1,5 @@
+package com.xiaomi.tool;
+
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -67,8 +69,8 @@ public class FileHelper {
         System.out.println("map size" + map.size());
 
         String filepath = "/Users/huamiumiu/Miot/Localization/11.xls";
-//        ExcelHelper.createExcel(filepath, plugStringList, map);
-//        ExcelHelper.createExcel(filepath, stringList, map);
+//        com.xiaomi.tool.ExcelHelper.createExcel(filepath, plugStringList, map);
+//        com.xiaomi.tool.ExcelHelper.createExcel(filepath, stringList, map);
 
     }
 

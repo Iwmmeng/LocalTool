@@ -28,7 +28,7 @@
                     <archive>
                         <manifest>
                             <!-- 此处指定main方法入口的class -->
-                            <mainClass>MainEntry</mainClass>
+                            <mainClass>com.xiaomi.tool.MainEntry</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
