@@ -29,11 +29,22 @@ public class MainEntry {
         for (String fileName : XML_FILE_NAME_SET) {
             List<File> fileList = new ArrayList<>();
             Map<String, List<String>> map = new HashMap<>();
+            Map<String, List<String>> mapLand = new HashMap<>();
+            Map<String, List<String>> mapForign = new HashMap<>();
+
             List<File> fileNameList = FileHelper.getAllDirsAndFiles(fileList, APK_FILE, fileName);
             LOGGER.info("{}文件一共有文件{}个",fileName,fileNameList.size());
             LOGGER.info("=============== {} files parse begin ===============",fileName);
             for (File f : fileNameList) {
                     FileHelper.parseAllXml(map, f);
+            }
+            for(String key:map.keySet() ){
+                for(int j=0;j<map.get(key).size();j++){
+
+
+
+                }
+
             }
             LOGGER.info("{}文件一共有key {}个",fileName,map.size());
             LOGGER.info("=============== {} parse end ===============",fileName);
