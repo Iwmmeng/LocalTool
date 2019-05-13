@@ -23,8 +23,9 @@ public class MainEntry {
          * 需要判断当前路径下是否有APK_FILE，有需要先删除，没有直接运行生成改文件。
          */
         LOGGER.info("=============================== 解析开始 ===============================");
-        LOGGER.info("输入文件路径为{}",args[0]);
-        File APK_FILE = new File(args[0]);
+//        LOGGER.info("输入文件路径为{}",args[0]);
+//        File APK_FILE = new File(args[0]);
+        File APK_FILE = new File("/Users/huamiumiu/Miot/Localization/localFile");
         HSSFWorkbook workbook = new HSSFWorkbook();
         for (String fileName : XML_FILE_NAME_SET) {
             List<File> fileList = new ArrayList<>();
@@ -53,9 +54,11 @@ public class MainEntry {
             ExcelHelper.fillExcel(fileNameList, map, workbook, sheet);
             LOGGER.info("=============== {} fill excel end ===============",fileName);
         }
-        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
+//        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
+        workbook.write(new FileOutputStream( "/Users/huamiumiu/Miot/Localization/localFile/data.xls"));
         workbook.close();
-        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
+//        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
+        LOGGER.info("excel output finished, ptah is {}", "/Users/huamiumiu/Miot/Localization/localFile/data.xls");
         LOGGER.info("=============================== 解析完成 ===============================");
     }
 
