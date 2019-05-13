@@ -22,45 +22,32 @@ public class MainEntry {
         /**args[0] 表示的是输入文件的绝对路径，args[1]产出excel的存放路径
          * 需要判断当前路径下是否有APK_FILE，有需要先删除，没有直接运行生成改文件。
          */
-//        File zipFile = new File(args[0]);
-//        System.out.println(System.getProperty("user.dir"));
-//        LOGGER.info("输入文件路径为：",args[0]);
-//        File APK_FILE = new File(args[0]);
-        File APK_FILE = new File("/Users/huamiumiu/Miot/Localization/localFile");
-
-//        File zipFile = new File("/Users/huamiumiu/Desktop/本地化工具/com.roborock.sapphire.android_2019030119560994161.zip");
-//        File APK_FILE = new File(zipFile + ".out");
-//        System.out.println("apkFile: " + APK_FILE);
-//        if (APK_FILE.exists()) {
-//            ShellUtil.exec("remove -rf " + APK_FILE);
-//        }
-//        String info = ShellUtil.exec("java -jar apktool.jar d " + zipFile);
-//        System.out.println("info" + info);
+        LOGGER.info("=============================== 解析开始 ===============================");
+        LOGGER.info("输入文件路径为{}",args[0]);
+        File APK_FILE = new File(args[0]);
         HSSFWorkbook workbook = new HSSFWorkbook();
         for (String fileName : XML_FILE_NAME_SET) {
             List<File> fileList = new ArrayList<>();
             Map<String, List<String>> map = new HashMap<>();
             List<File> fileNameList = FileHelper.getAllDirsAndFiles(fileList, APK_FILE, fileName);
-            LOGGER.info("一共有文件%s个",fileNameList.size());
+            LOGGER.info("{}文件一共有文件{}个",fileName,fileNameList.size());
+            LOGGER.info("=============== {} files parse begin ===============",fileName);
             for (File f : fileNameList) {
-                FileHelper.parseAllXml(map, f);
+                    FileHelper.parseAllXml(map, f);
             }
-//            for (Map.Entry<String, List<String>> mapEntry : map.entrySet()) {
-//                System.out.println("key: " + mapEntry.getKey() + " value: " + mapEntry.getValue());
-//            }
-//            System.out.println("keys size: " + map.keySet().size());
-//            System.out.println("map size" + map.size());
-            LOGGER.info("一共有属性%s个",map.size());
+            LOGGER.info("{}文件一共有key {}个",fileName,map.size());
+            LOGGER.info("=============== {} parse end ===============",fileName);
             HSSFSheet sheet = workbook.createSheet(fileName);
+            LOGGER.info("=============== {} fill excel start ===============",fileName);
             ExcelHelper.fillExcel(fileNameList, map, workbook, sheet);
+            LOGGER.info("=============== {} fill excel end ===============",fileName);
         }
-        //todo args[1]  用于输出的路径
-//        workbook.write(new FileOutputStream(System.getProperty("user.home") + "/Miot/workCode/LocalTool/data.xls"));
-//        LOGGER.info("excel的输出路径为：",args[0] + "/data.xls");
-//        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
-        workbook.write(new FileOutputStream("/Users/huamiumiu/Miot/Localization/localFile" + "/data.xls"));
+        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
         workbook.close();
+        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
+        LOGGER.info("=============================== 解析完成 ===============================");
     }
+
 
 
 

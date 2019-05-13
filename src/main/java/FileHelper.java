@@ -134,28 +134,30 @@ public class FileHelper {
 
     //把所有的值都记录存到map
     public static Map parseAllXml(Map<String, List<String>> map,File filePath) throws DocumentException {
-        SAXReader reader = new SAXReader();
+        LOGGER.info("start to parsed {} ", filePath.getParentFile().getName());
+            SAXReader reader = new SAXReader();
 //        Document doc = reader.read(new File("/Users/huamiumiu/Miot/Localization/localFile/de/plug_strings.xml"));
-        Document doc = reader.read(filePath);
-        Element root = doc.getRootElement();
-        List<Element> childElements = root.elements();
-        for (Element child : childElements) {
-            //未知属性名情况下
-            List<Attribute> attributeList = child.attributes();
-            for (Attribute attr : attributeList) {
-                if (map.containsKey(attr.getValue())) {
-                    List<String> valueList = map.get(attr.getValue());
-                    valueList.add(child.getText());
-                    map.put(attr.getValue(), valueList);
-                } else {
+            Document doc = reader.read(filePath);
+            Element root = doc.getRootElement();
+            List<Element> childElements = root.elements();
+            for (Element child : childElements) {
+                //未知属性名情况下
+                List<Attribute> attributeList = child.attributes();
+                for (Attribute attr : attributeList) {
+                    if (map.containsKey(attr.getValue())) {
+                        List<String> valueList = map.get(attr.getValue());
+                        valueList.add(child.getText());
+                        map.put(attr.getValue(), valueList);
+                    } else {
 //                    System.out.println("=====新增filepath：" + filePath + "=====新增key：" + attr.getValue() + "=======新增text：" + child.getText());
-                    List<String> newValueList = new ArrayList<String>();
-                    newValueList.add(child.getText());
-                    map.put(attr.getValue(), newValueList);
+                        List<String> newValueList = new ArrayList<String>();
+                        newValueList.add(child.getText());
+                        map.put(attr.getValue(), newValueList);
+                    }
                 }
             }
-        }
-        return map;
+        LOGGER.info("finish parsed {} ", filePath.getParentFile().getName());
+            return map;
     }
     public static List<File> fileListSortByName(List<File> fileNameTotalList,List<File> fileNamesubList, String fileName) {
         for(File file:fileNameTotalList){
