@@ -12,8 +12,10 @@ import org.slf4j.LoggerFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import static org.apache.poi.ss.usermodel.FillPatternType.SOLID_FOREGROUND;
 
@@ -25,7 +27,7 @@ public class ExcelHelper {
      * key2     v21     v22      v23
      **/
 
-    public static void fillExcel(List<File> fileNameList, Map<String, List<String>> map,HSSFSheet sheet) throws IOException {
+    public static void fillExcel(List<File> fileNameList,List<File> fileListzh,List<File> fileListForeign, Map<String, List<String>> map,HSSFWorkbook workbook,HSSFSheet sheet) throws IOException {
         //把文件名作为列表头（0行，从第一列开始）
         int count = 1;
         HSSFRow rowTitle = sheet.createRow(0);
@@ -40,8 +42,22 @@ public class ExcelHelper {
             HSSFCell cellKey = row.createCell(0);
             cellKey.setCellValue(entry.getKey());
             for (int j = 0; j < entry.getValue().size(); j++) {
+                HSSFCellStyle style = workbook.createCellStyle();
+                style.setFillForegroundColor((short)41);
+                style.setFillPattern(SOLID_FOREGROUND);
                 HSSFCell cellValue = row.createCell(j + 1);
                 cellValue.setCellValue(entry.getValue().get(j));
+                if(j<fileListzh.size()){
+                    Set setValue = new HashSet(entry.getValue());
+                    if(setValue.size()!=1){
+                        cellValue.setCellStyle(style);
+                    }
+                }else {
+                    Set setValue = new HashSet(entry.getValue());
+                    if(setValue.size()!=fileListForeign.size()){
+                        cellValue.setCellStyle(style);
+                    }
+                }
             }
         }
     }

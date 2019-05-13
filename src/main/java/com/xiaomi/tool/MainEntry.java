@@ -32,10 +32,22 @@ public class MainEntry {
 
         HSSFWorkbook workbook = new HSSFWorkbook();
         for (String fileName : XML_FILE_NAME_SET) {
-            List<File> fileList = new ArrayList<>();
+            List<File> fileListTmp = new ArrayList<>();
+            List<File> fileListForeign = new ArrayList<>();
+            List<File> fileListZh = new ArrayList<>();
+            List<File> fileNameList = new ArrayList<>();
             Map<String, List<String>> map = new HashMap<>();
+            List<File> fileNameListTmp = FileHelper.getAllDirsAndFiles(fileListTmp, APK_FILE, fileName);
+            for(int i=0;i<fileNameListTmp.size();i++){
+                if(fileNameListTmp.get(i).getParentFile().getName().startsWith("zh")){
+                    fileListZh.add(fileNameListTmp.get(i));
+                }else{
+                    fileListForeign.add(fileNameListTmp.get(i));
+                }
+            }
+            fileNameList.addAll(fileListZh);
+            fileNameList.addAll(fileListForeign);
 
-            List<File> fileNameList = FileHelper.getAllDirsAndFiles(fileList, APK_FILE, fileName);
             System.out.println(fileNameList);
             LOGGER.info("{}文件一共有文件{}个",fileName,fileNameList.size());
             LOGGER.info("=============== {} files parse begin ===============",fileName);
@@ -46,7 +58,7 @@ public class MainEntry {
             LOGGER.info("=============== {} parse end ===============",fileName);
             HSSFSheet sheet = workbook.createSheet(fileName);
             LOGGER.info("=============== {} fill excel start ===============",fileName);
-            ExcelHelper.fillExcel(fileNameList, map, sheet);
+            ExcelHelper.fillExcel(fileNameList,fileListZh,fileListForeign, map,workbook, sheet);
             LOGGER.info("=============== {} fill excel end ===============",fileName);
         }
         workbook.write(new FileOutputStream("/Users/huamiumiu/Miot/Localization/localFile/data.xls"));
@@ -55,6 +67,16 @@ public class MainEntry {
 //        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
         LOGGER.info("excel output finished, ptah is {}", "/Users/huamiumiu/Miot/Localization/localFile/data.xls");
         LOGGER.info("=============================== 解析完成 ===============================");
+
+        //todo 对解析完成的数据进行上色
+
+
+
+
+
+
+
+
     }
 
 
