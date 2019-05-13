@@ -38,21 +38,17 @@ public class ExcelHelper {
         //把map的key作为行表头（0列，从第一行开始）
         int rowColloum = 1;
         for (Map.Entry<String, List<String>> entry : map.entrySet()) {
-            Map<String,IndexedColors> colorsMap = new HashMap<String, IndexedColors>();
-            int colorIndex =40;
-            for(String s:entry.getValue()){
-                colorsMap.put(s,IndexedColors.fromInt(colorIndex++));
-            }
+//            Map<String,IndexedColors> colorsMap = new HashMap<String, IndexedColors>();
+//            int colorIndex =40;
+//            for(String s:entry.getValue()){
+//                colorsMap.put(s,IndexedColors.fromInt(colorIndex++));
+//            }
             HSSFRow row = sheet.createRow(rowColloum++);
             HSSFCell cellKey = row.createCell(0);
             cellKey.setCellValue(entry.getKey());
             for (int j = 0; j < entry.getValue().size(); j++) {
-                HSSFCellStyle style = workbook.createCellStyle();
-                style.setFillForegroundColor(colorsMap.get(entry.getValue().get(j)).getIndex());
-                style.setFillPattern(SOLID_FOREGROUND);
                 HSSFCell cellValue = row.createCell(j + 1);
                 cellValue.setCellValue(entry.getValue().get(j));
-                cellValue.setCellStyle(style);
             }
         }
     }

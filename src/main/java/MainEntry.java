@@ -31,15 +31,67 @@ public class MainEntry {
             Map<String, List<String>> map = new HashMap<>();
             Map<String, List<String>> mapLand = new HashMap<>();
             Map<String, List<String>> mapForign = new HashMap<>();
+            Map<String, List<String>> mapLandResult = new HashMap<>();
+            Map<String, List<String>> mapForignResult = new HashMap<>();
+            List<String> zhFileList = new ArrayList<>();
+            List<String> foreignFileList = new ArrayList<>();
+            List<String> mapLandResultList = new ArrayList<>();
+
 
             List<File> fileNameList = FileHelper.getAllDirsAndFiles(fileList, APK_FILE, fileName);
             LOGGER.info("{}文件一共有文件{}个",fileName,fileNameList.size());
             LOGGER.info("=============== {} files parse begin ===============",fileName);
             for (File f : fileNameList) {
-                    FileHelper.parseAllXml(map, f);
+                if (f.getName().startsWith("zh")){
+                    zhFileList.add(f.getName());
+                    FileHelper.parseAllXml(mapLand, f);
+                }else {
+                    foreignFileList.add(f.getName());
+                    FileHelper.parseAllXml(mapForign, f);
+                }
             }
-            for(String key:map.keySet() ){
-                for(int j=0;j<map.get(key).size();j++){
+            for(String key:mapLand.keySet() ){
+                Set setLand = new HashSet(mapLand.get(key));
+                List landList = mapLand.get(key);
+                if(setLand.size()!=1){
+                    for(int j=0;j<landList.size();j++){
+                        StringBuilder builder = new StringBuilder();
+                        if(builder.indexOf(","+landList.get(j)+",") > -1) {
+
+                            System.out.println("重复的有："+landList.get(j));
+                        } else {
+                            builder.append(",").append(landList.get(j)).append(",");
+                            mapLandResultList.add(landList.get(j).toString());
+                            mapLandResult.put(key,mapLandResultList);
+                        }
+                    }
+
+                }
+
+
+                for(int j=1;j<mapLand.get(key).size();j++){
+
+
+
+
+
+                    StringBuilder builder = new StringBuilder();
+                    for(String str : mapLand.get(key)) {
+                        // 如果不存在返回 -1。
+                        if(builder.indexOf(","+str+",") > -1) {
+
+                            System.out.println("重复的有："+str);
+                        } else {
+                            builder.append(",").append(str).append(",");
+                        }
+                    }
+
+                    String value0 = mapLand.get(key).get(0);
+                    if(mapLand.get(key).get(j).equals(value0)){
+                        continue;
+                    }else {
+
+                    }
 
 
 
