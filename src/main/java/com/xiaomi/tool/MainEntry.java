@@ -36,7 +36,7 @@ public class MainEntry {
 //        File APK_FILE = new File(path.toString());
 
         //todo 传入windows的路径
-        String path = fixPath("");
+        String path = fixPath("/Users/huamiumiu/Miot/Localization/localFile");
         File APK_FILE = new File(path);
         System.out.println("apk_file: "+APK_FILE );
 //        File APK_FILE = new File("/Users/huamiumiu/Miot/Localization/localFile");
@@ -53,10 +53,6 @@ public class MainEntry {
             for(int i=0;i<fileNameListTmp.size();i++){
                 if(fileNameListTmp.get(i).getParentFile().getName().startsWith("zh")){
                     fileListZh.add(fileNameListTmp.get(i));
-                    if(fileNameListTmp.get(i).getParentFile().getName().contains("CN")){
-                        ZH_CN = i;
-//                        System.out.println("ZH_CN"+ZH_CN);
-                    }
                 }else{
                     fileListForeign.add(fileNameListTmp.get(i));
                 }
@@ -66,8 +62,13 @@ public class MainEntry {
             for(int j=0;j<fileNameList.size();j++){
                 if(fileNameList.get(j).getParentFile().getName().equals("en")){
                     EN=j;
-//                    System.out.println("EN"+EN);
+                    System.out.println("EN"+EN);
                 }
+                if(fileNameList.get(j).getParentFile().getName().contains("CN")){
+                    ZH_CN=j;
+                    System.out.println("ZH_CN"+ZH_CN);
+                }
+
             }
             System.out.println(fileNameList);
             LOGGER.info("{}文件一共有文件{}个",fileName,fileNameList.size());
@@ -82,10 +83,14 @@ public class MainEntry {
             ExcelHelper.fillExcel(fileNameList,fileListZh,fileListForeign, map,workbook, sheet);
             LOGGER.info("=============== {} fill excel end ===============",fileName);
         }
-//        workbook.write(new FileOutputStream("/Users/huamiumiu/Miot/Localization/localFile/data.xls"));
-        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
+        if(isOsWindows()){
+            path = path + "\\data.xls";
+        }else {
+            path = path + "/data.xls";
+        }
+        workbook.write(new FileOutputStream(path));
         workbook.close();
-        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
+        LOGGER.info("excel output finished, ptah is {}", path);
 //        LOGGER.info("excel output finished, ptah is {}", "/Users/huamiumiu/Miot/Localization/localFile/data.xls");
         LOGGER.info("=============================== 解析完成 ===============================");
 
