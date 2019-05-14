@@ -20,14 +20,19 @@ import java.util.Set;
 public class MainEntry {
     private static final Logger LOGGER = LoggerFactory.getLogger(MainEntry.class);
     private static Set<String> XML_FILE_NAME_SET = new HashSet<>(Arrays.asList("plug_strings", "strings"));
+    public static int ZH_CN=0;
+    public static int EN=0;
+
+
+
     public static void main(String[] args) throws InterruptedException, DocumentException, IOException {
         /**args[0] 表示的是输入文件的绝对路径，args[1]产出excel的存放路径
          * 需要判断当前路径下是否有APK_FILE，有需要先删除，没有直接运行生成改文件。
          */
         LOGGER.info("=============================== 解析开始 ===============================");
-//        LOGGER.info("输入文件路径为{}",args[0]);
-//        File APK_FILE = new File(args[0]);
-        File APK_FILE = new File("/Users/huamiumiu/Miot/Localization/localFile");
+        LOGGER.info("输入文件路径为{}",args[0]);
+        File APK_FILE = new File(args[0]);
+//        File APK_FILE = new File("/Users/huamiumiu/Miot/Localization/localFile");
 
 
         HSSFWorkbook workbook = new HSSFWorkbook();
@@ -41,13 +46,22 @@ public class MainEntry {
             for(int i=0;i<fileNameListTmp.size();i++){
                 if(fileNameListTmp.get(i).getParentFile().getName().startsWith("zh")){
                     fileListZh.add(fileNameListTmp.get(i));
+                    if(fileNameListTmp.get(i).getParentFile().getName().contains("CN")){
+                        ZH_CN = i;
+//                        System.out.println("ZH_CN"+ZH_CN);
+                    }
                 }else{
                     fileListForeign.add(fileNameListTmp.get(i));
                 }
             }
             fileNameList.addAll(fileListZh);
             fileNameList.addAll(fileListForeign);
-
+            for(int j=0;j<fileNameList.size();j++){
+                if(fileNameList.get(j).getParentFile().getName().equals("en")){
+                    EN=j;
+//                    System.out.println("EN"+EN);
+                }
+            }
             System.out.println(fileNameList);
             LOGGER.info("{}文件一共有文件{}个",fileName,fileNameList.size());
             LOGGER.info("=============== {} files parse begin ===============",fileName);
@@ -61,11 +75,11 @@ public class MainEntry {
             ExcelHelper.fillExcel(fileNameList,fileListZh,fileListForeign, map,workbook, sheet);
             LOGGER.info("=============== {} fill excel end ===============",fileName);
         }
-        workbook.write(new FileOutputStream("/Users/huamiumiu/Miot/Localization/localFile/data.xls"));
-//        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
+//        workbook.write(new FileOutputStream("/Users/huamiumiu/Miot/Localization/localFile/data.xls"));
+        workbook.write(new FileOutputStream(args[0] + "/data.xls"));
         workbook.close();
-//        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
-        LOGGER.info("excel output finished, ptah is {}", "/Users/huamiumiu/Miot/Localization/localFile/data.xls");
+        LOGGER.info("excel output finished, ptah is {}", args[0] + "/data.xls");
+//        LOGGER.info("excel output finished, ptah is {}", "/Users/huamiumiu/Miot/Localization/localFile/data.xls");
         LOGGER.info("=============================== 解析完成 ===============================");
 
         //todo 对解析完成的数据进行上色

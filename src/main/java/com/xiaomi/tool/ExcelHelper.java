@@ -41,21 +41,23 @@ public class ExcelHelper {
             HSSFRow row = sheet.createRow(rowColloum++);
             HSSFCell cellKey = row.createCell(0);
             cellKey.setCellValue(entry.getKey());
+
             for (int j = 0; j < entry.getValue().size(); j++) {
-                HSSFCellStyle style = workbook.createCellStyle();
-                style.setFillForegroundColor((short)41);
-                style.setFillPattern(SOLID_FOREGROUND);
-                HSSFCell cellValue = row.createCell(j + 1);
-                cellValue.setCellValue(entry.getValue().get(j));
-                if(j<fileListzh.size()){
-                    Set setValue = new HashSet(entry.getValue());
-                    if(setValue.size()!=1){
-                        cellValue.setCellStyle(style);
-                    }
+//                System.out.println("entry.getValue().size()"+entry.getValue().size()+"key"+entry.getKey());
+                if(j==MainEntry.EN ||j==MainEntry.ZH_CN){
+                    HSSFCell cellValue = row.createCell(j + 1);
+                    cellValue.setCellValue(entry.getValue().get(j));
                 }else {
-                    Set setValue = new HashSet(entry.getValue());
-                    if(setValue.size()!=fileListForeign.size()){
-                        cellValue.setCellStyle(style);
+                    HSSFCell cellValue = row.createCell(j + 1);
+                    cellValue.setCellValue(entry.getValue().get(j));
+                    if(((MainEntry.EN) < entry.getValue().size()) && (MainEntry.ZH_CN < entry.getValue().size())) {
+                        if (entry.getValue().get(j).equals(entry.getValue().get(MainEntry.EN)) ||
+                                entry.getValue().get(j).equals(entry.getValue().get(MainEntry.ZH_CN))) {
+                            HSSFCellStyle style = workbook.createCellStyle();
+                            style.setFillForegroundColor((short) 40);
+                            style.setFillPattern(SOLID_FOREGROUND);
+                            cellValue.setCellStyle(style);
+                        }
                     }
                 }
             }
