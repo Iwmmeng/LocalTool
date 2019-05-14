@@ -56,7 +56,7 @@ public class FileHelper {
         System.out.println("stringList:" + stringList);
         System.out.println("string size:" + stringList.size());
         for (File xmlFile : plugStringList) {
-            parseAllXml(map,xmlFile);
+            parseAllXml(map, xmlFile);
         }
 //        for (File xmlFile : stringList) {
 //            parseAllXml(xmlFile.toString());
@@ -74,15 +74,15 @@ public class FileHelper {
 
     }
 
-    public static List<File>  getAllDirsAndFiles(List<File> fileNameList, File file,String xmlFileName) {
+    public static List<File> getAllDirsAndFiles(List<File> fileNameList, File file, String xmlFileName) {
         if (file.exists() && file.isFile()) {
 //            if (file.getName().equals(xmlFileName) && file.getParentFile().getName().startsWith("values-")) {
-            if (file.getName().startsWith(xmlFileName) ) {
+            if (file.getName().startsWith(xmlFileName)) {
                 fileNameList.add(file);
             }
         } else {
             for (File sub : file.listFiles()) {
-                getAllDirsAndFiles( fileNameList,sub,xmlFileName);
+                getAllDirsAndFiles(fileNameList, sub, xmlFileName);
             }
         }
         return fileNameList;
@@ -135,35 +135,36 @@ public class FileHelper {
     }
 
     //把所有的值都记录存到map
-    public static Map parseAllXml(Map<String, List<String>> map,File filePath) throws DocumentException {
+    public static Map parseAllXml(Map<String, List<String>> map, File filePath) throws DocumentException {
         LOGGER.info("start to parsed {} ", filePath.getParentFile().getName());
-            SAXReader reader = new SAXReader();
+        SAXReader reader = new SAXReader();
 //        Document doc = reader.read(new File("/Users/huamiumiu/Miot/Localization/localFile/de/plug_strings.xml"));
-            Document doc = reader.read(filePath);
-            Element root = doc.getRootElement();
-            List<Element> childElements = root.elements();
-            for (Element child : childElements) {
-                //未知属性名情况下
-                List<Attribute> attributeList = child.attributes();
-                for (Attribute attr : attributeList) {
-                    if (map.containsKey(attr.getValue())) {
-                        List<String> valueList = map.get(attr.getValue());
-                        valueList.add(child.getText());
-                        map.put(attr.getValue(), valueList);
-                    } else {
+        Document doc = reader.read(filePath);
+        Element root = doc.getRootElement();
+        List<Element> childElements = root.elements();
+        for (Element child : childElements) {
+            //未知属性名情况下
+            List<Attribute> attributeList = child.attributes();
+            for (Attribute attr : attributeList) {
+                if (map.containsKey(attr.getValue())) {
+                    List<String> valueList = map.get(attr.getValue());
+                    valueList.add(child.getText());
+                    map.put(attr.getValue(), valueList);
+                } else {
 //                    System.out.println("=====新增filepath：" + filePath + "=====新增key：" + attr.getValue() + "=======新增text：" + child.getText());
-                        List<String> newValueList = new ArrayList<String>();
-                        newValueList.add(child.getText());
-                        map.put(attr.getValue(), newValueList);
-                    }
+                    List<String> newValueList = new ArrayList<String>();
+                    newValueList.add(child.getText());
+                    map.put(attr.getValue(), newValueList);
                 }
             }
+        }
         LOGGER.info("finish parsed {} ", filePath.getParentFile().getName());
-            return map;
+        return map;
     }
-    public static List<File> fileListSortByName(List<File> fileNameTotalList,List<File> fileNamesubList, String fileName) {
-        for(File file:fileNameTotalList){
-            if(file.getName().contains(fileName)){
+
+    public static List<File> fileListSortByName(List<File> fileNameTotalList, List<File> fileNamesubList, String fileName) {
+        for (File file : fileNameTotalList) {
+            if (file.getName().contains(fileName)) {
                 fileNamesubList.add(file);
             }
         }
