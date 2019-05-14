@@ -29,9 +29,16 @@ public class MainEntry {
         /**args[0] 表示的是输入文件的绝对路径，args[1]产出excel的存放路径
          * 需要判断当前路径下是否有APK_FILE，有需要先删除，没有直接运行生成改文件。
          */
-        LOGGER.info("=============================== 解析开始 ===============================");
-        LOGGER.info("输入文件路径为{}",args[0]);
-        File APK_FILE = new File(args[0]);
+
+//        File path = fixPath(new File(args[0]));
+//        LOGGER.info("=============================== 解析开始 ===============================");
+//        LOGGER.info("输入文件路径为{}",path);
+//        File APK_FILE = new File(path.toString());
+
+        //todo 传入windows的路径
+        String path = fixPath("");
+        File APK_FILE = new File(path);
+        System.out.println("apk_file: "+APK_FILE );
 //        File APK_FILE = new File("/Users/huamiumiu/Miot/Localization/localFile");
 
 
@@ -92,6 +99,25 @@ public class MainEntry {
 
 
     }
+    private static boolean isOsWindows(){
+        String osname = System.getProperty("os.name").toLowerCase();
+        boolean rt = osname.startsWith("windows");
+        return rt;
+    }
+    public static String fixPath(String path) {
+        if (null==path) return path;
+        if (path.length()>=1 && ('/'==path.charAt(0) || '\\'==path.charAt(0))) {
+            // 根目录, Windows下需补上盘符.
+            if (isOsWindows()) {
+                String userdir = System.getProperty("user.dir");
+                if (null!=userdir && userdir.length()>=2) {
+                    return userdir.substring(0, 2) + path;
+                }
+            }
+        }
+        return  path;
+    }
+
 
 
 
